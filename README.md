@@ -132,13 +132,21 @@ Top Recommendations
 
 ## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
+I ran the recommender with several profiles, including conflicting preferences, no matching genre or mood, energy targets at both ends of the 0–1 scale, and an out-of-range energy target. Results below show the top five songs for each profile.
 
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
+| Profile | Top five recommendations (score) |
+|---|---|
+| Rock, sad, energy 0.9 | Storm Runner (2.99), Gym Hero (0.97), Sunrise City (0.92), Rooftop Lights (0.86), Night Drive Loop (0.85) |
+| Pop, chill, energy 0.9 | Gym Hero (2.97), Sunrise City (2.92), Midnight Coding (1.52), Library Rain (1.45), Spacewalk Thoughts (1.38) |
+| Ambient, intense, energy 0.2 | Spacewalk Thoughts (2.92), Storm Runner (1.29), Gym Hero (1.27), Library Rain (0.85), Coffee Shop Stories (0.83) |
+| No matching genre or mood, energy 0.5 | Midnight Coding (0.92), Focus Flow (0.90), Coffee Shop Stories (0.87), Library Rain (0.85), Spacewalk Thoughts (0.78) |
+| Lofi, chill, energy 0.0 | Library Rain (3.65), Midnight Coding (3.58), Focus Flow (2.60), Spacewalk Thoughts (1.72), Coffee Shop Stories (0.63) |
+| Lofi, chill, energy 1.0 | Midnight Coding (3.42), Library Rain (3.35), Focus Flow (2.40), Spacewalk Thoughts (1.28), Gym Hero (0.93) |
+| Pop, happy, energy 1.5 (out of range) | Sunrise City (3.32), Gym Hero (2.43), Rooftop Lights (1.26), Storm Runner (0.41), Night Drive Loop (0.25) |
 
----
+The tests showed that when genre and mood do not match, energy similarity alone determines the ranking. With conflicting preferences, the 2-point genre match can outweigh a mood match. At the two energy extremes, the same lofi/chill songs remain near the top because their genre and mood matches contribute three points, while their order shifts with energy similarity. An out-of-range energy target still produces scores, but it is not a meaningful 0–1 preference and should be validated. I did not test changing the genre weight or adding tempo or valence to the scoring formula.
+
+
 
 ## Limitations and Risks
 
@@ -164,6 +172,5 @@ Write 1 to 2 paragraphs here about what you learned:
 
 - about how recommenders turn data into predictions
 - about where bias or unfairness could show up in systems like this
-
 
 
