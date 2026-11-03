@@ -29,6 +29,21 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+Each song includes features such as genre, mood, energy, tempo, and acousticness. A user profile stores preferred genre and mood, target energy, and acoustic preference. The recommender will score songs by rewarding genre and mood matches and energy similarity, then rank them and return the highest-scoring songs.
+
+
+Algorithm Recipe:
+Score = Genre + Mood + Energy 
+Genre: 0 or 2 
+Mood: 0 or 1 
+Energy: 1.0 - abs(song energy - user's target energy)
+
+
+Potential Biases:
+Genre matches are worth twice as much as mood matches, so the system may over-prioritize a user's favorite genre and overlook songs that fit their mood or energy better.
+
+
+
 ---
 
 ## Getting Started
@@ -70,13 +85,45 @@ You can add more tests in `tests/test_recommender.py`.
 
 Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
 
+
 ```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
+Top Recommendations                                         
+========================================         
+1. Sunrise City                                                                  
+   Final score: 3.98                      
+   Reasons:                                               
+     - genre match (+2.0)                            
+     - mood match (+1.0)                                                         
+     - energy similarity (+0.98)
+----------------------------------------
+2. Gym Hero
+   Final score: 2.87
+   Reasons:
+     - genre match (+2.0)
+     - mood mismatch (+0.0)
+     - energy similarity (+0.87)
+----------------------------------------
+3. Rooftop Lights
+   Final score: 1.96
+   Reasons:
+     - genre mismatch (+0.0)
+     - mood match (+1.0)
+     - energy similarity (+0.96)
+----------------------------------------
+4. Night Drive Loop
+   Final score: 0.95
+   Reasons:
+     - genre mismatch (+0.0)
+     - mood mismatch (+0.0)
+     - energy similarity (+0.95)
+----------------------------------------
+5. Storm Runner
+   Final score: 0.89
+   Reasons:
+     - genre mismatch (+0.0)
+     - mood mismatch (+0.0)
+     - energy similarity (+0.89)
+----------------------------------------
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->

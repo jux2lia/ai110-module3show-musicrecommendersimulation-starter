@@ -32,6 +32,8 @@ Prompts:
 
 Avoid code here. Pretend you are explaining the idea to a friend who does not program.
 
+For each song, the system adds points when its genre or mood matches the user's preferences. A genre match is worth two points, a mood match is worth one point, and the song receives up to one more point for having energy close to the user's target. The system then ranks songs by their total points and recommends the highest-scoring ones. Each recommendation includes the reasons for its score.
+
 ---
 
 ## 4. Data  
